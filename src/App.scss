@@ -1,5 +1,10 @@
+$size-cell: 36px;
+$border-cell: .5px solid black;;
+$bg-board: #282c34;
+$size-board: ($size-cell + 1)*8;
+
 body {
-  background-color: #282c34;
+  background-color: $bg-board;
 }
 
 .App {
@@ -12,10 +17,8 @@ body {
   justify-content: center;
   align-items: center;
   main {
-    background-color: #383838;
-    color: #fff;
-    max-width: 296px;
-    max-height: 296px;
+    max-width: $size-board;
+    max-height: $size-board;
     ul {
       margin: 0;
       padding: 0;
@@ -24,14 +27,14 @@ body {
       flex-wrap: wrap;
       max-height: inherit;
       li {
-        width: 37px;
-        height: 37px;
+        width: $size-cell + 1;
+        height: $size-cell + 1;
         .drag {
           cursor: move;
-          width: 36px;
-          height: 36px;
+          width: $size-cell;
+          height: $size-cell;
           display: inline-flex;
-          border: .5px solid black;
+          border: $border-cell;
         }   
       }
     } 

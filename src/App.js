@@ -11,8 +11,6 @@ const colorList = colorUtils.list();
 
 const App = () => {
 
-  console.log('ENV:', process.env);
-
   const [colors, setColors] = useState(colorList);
 
   const onDragStart = (colorItem) => {
