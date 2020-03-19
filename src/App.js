@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.scss';
 import colorUtils from './commons/colorUtils';
+import { map, filter, get } from 'lodash'
+import Board from './components/Board';
+import CellBoundary from './components/CellBoundary';
+import Cell from './components/Cell';
 
 let draggedItem;
 const colorList = colorUtils.list();
@@ -11,46 +15,38 @@ const App = () => {
 
   const [colors, setColors] = useState(colorList);
 
-  const onDragStart = (e, index) => {
-    draggedItem = colors[index]
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/html", e.target.parentNode);
-    e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
+  const onDragStart = (colorItem) => {
+    draggedItem = colorItem
   };
 
   const onDragOver = index => {
-    const draggedOverItem = colors[index];
+    const draggedOverItem = get(colors, index);
     if (draggedItem === draggedOverItem) {
       return;
     }
-    let _items = colors.filter(item => item !== draggedItem);
+    let _items = filter(colors, item => item !== draggedItem);
     _items.splice(index, 0, draggedItem);
     setColors(_items);
   };
 
-  const onDragEnd = e => {
+  const onDragEnd = () => {
     draggedItem = null;
   }
 
   return (
     <div className="App">
       <main>
-        <ul>
-          {colors.map((item, idx) => {
+        <Board>
+          {map(colors, (color, index) => {
+            const cellBoundaryProps = { key: index, index, onDragOver },
+            cellProps = { color, onDragStart, onDragEnd }
             return (
-              <li key={idx} onDragOver={() => onDragOver(idx)}>
-                <div
-                  className="drag"
-                  draggable
-                  onDragStart={(e) => onDragStart(e, idx)}
-                  style={{backgroundColor: item}}
-                  onDragEnd={(e) => onDragEnd(e)}
-                >
-                </div>
-              </li>
+              <CellBoundary {...cellBoundaryProps}>
+                <Cell {...cellProps} />
+              </CellBoundary>
             )
           })}
-        </ul>
+        </Board>
       </main>
     </div>
   );
