@@ -7,20 +7,18 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "dotenv": "^8.2.0",
+    "env-cmd": "^8.0.2",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-redux": "^7.2.0",
-    "react-scripts": "3.4.0",
-    "redux": "^4.0.5",
-    "redux-logger": "^3.0.6"
+    "react-scripts": "3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "env-cmd .env.development react-scripts start",
+    "build": "env-cmd .env react-scripts build",
+    "test": "env-cmd .env.test react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
