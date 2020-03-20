@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import colorUtils from '../commons/colorUtils';
+import colorUtils from '../../commons/colorUtils';
 import { map, filter, get } from 'lodash';
-import CellBoundary from './CellBoundary';
-import Cell from './Cell';
+import BoundaryCell from '../BoundaryCell';
+import Cell from '../Cell';
 
 let draggedItem;
 
@@ -34,9 +34,9 @@ const Board = () => {
         const cellBoundaryProps = { key: index, index, onDragOver },
         cellProps = { color, onDragStart, onDragEnd }
         return (
-          <CellBoundary {...cellBoundaryProps}>
+          <BoundaryCell {...cellBoundaryProps}>
             <Cell {...cellProps} />
-          </CellBoundary>
+          </BoundaryCell>
         )
       })}
     </ul>

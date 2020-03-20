@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CellBoundary = (props) => {
+const BoundaryCell = (props) => {
 
   const drapOver = () => {
     props.onDragOver(props.index);
@@ -15,8 +15,8 @@ const CellBoundary = (props) => {
 
 }
 
-CellBoundary.propTypes = {
+BoundaryCell.propTypes = {
   onDragOver: PropTypes.func
 }
 
-export default CellBoundary;
+export default BoundaryCell;
