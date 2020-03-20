@@ -6,6 +6,6 @@ test('renders Board', () => {
   const { getByTestId } = render(<Board />)
 });
 
-describe('dragging cell to other postions', () => {
+test('dragging cell to other postions', () => {
   const { getByTestId } = render(<Board />)
 })
